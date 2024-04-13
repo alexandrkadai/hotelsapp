@@ -3,7 +3,7 @@ import React from 'react';
 
 const Page = () => {
   <View>
-    <Text>Page</Text>
+    <Text>Profile</Text>
   </View>;
 };
 
