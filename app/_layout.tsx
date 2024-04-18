@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { TouchableOpacity } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { Button, TouchableOpacity } from 'react-native';
+import { Stack, useNavigation, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -105,7 +105,10 @@ function RootLayoutNav() {
         name="listing/[id]"
         options={{
           headerTitle: '',
+          headerTransparent: true,
+          
         }}
+        
       />
       <Stack.Screen
         name="(modals)/booking"
