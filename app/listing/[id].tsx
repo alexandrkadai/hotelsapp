@@ -2,14 +2,11 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   Image,
   Dimensions,
   TouchableOpacity,
   Share
 } from 'react-native';
-import React, { useLayoutEffect, useRef } from 'react';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
 import Animated, {
   SlideInDown,
   interpolate,
@@ -17,6 +14,8 @@ import Animated, {
   useAnimatedStyle,
   useScrollViewOffset,
 } from 'react-native-reanimated';
+import React, { useLayoutEffect} from 'react';
+import { useLocalSearchParams, useNavigation } from 'expo-router';
 //
 import { Listings_TYPES } from '@/intreface/listing_types';
 import listingData from '@/assets/data/airbnb-listings.json';
@@ -45,7 +44,7 @@ const Page = () => {
       console.log(err);
     }
   };
-  
+
   const headerAnimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1]),
