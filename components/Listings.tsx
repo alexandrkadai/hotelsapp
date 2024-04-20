@@ -6,14 +6,14 @@ import {
   ListRenderItem,
   TouchableOpacity,
   Image,
-  SafeAreaView,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'expo-router';
 import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
 import { Listings_TYPES } from '@/intreface/listing_types';
-import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
+import { BottomSheetFlatList, BottomSheetFlatListMethods } from '@gorhom/bottom-sheet';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 
 interface Props {
   listings: any[];
@@ -24,10 +24,16 @@ interface Props {
 const Listings = ({ listings: items, refresh, category }: Props) => {
   const [loading, setLoading] = useState(false);
 
-  const listRef = useRef<FlatList>(null);
+  const listRef = useRef<BottomSheetFlatListMethods>(null);
+
+  useEffect(() => {
+    if (refresh) {
+      // listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    }
+  }, [refresh]);
+
   useEffect(() => {
     setLoading(true);
-
     setTimeout(() => {
       setLoading(false);
     }, 200);
@@ -60,14 +66,14 @@ const Listings = ({ listings: items, refresh, category }: Props) => {
 
   return (
     <View style={styles.container}>
-      <FlatList renderItem={renderRow} ref={listRef} data={loading ? [] : items} />
+      <BottomSheetFlatList renderItem={renderRow} ref={listRef} data={loading ? [] : items} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 120,
+    flex: 1,
   },
   listing: {
     padding: 17,

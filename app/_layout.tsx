@@ -7,6 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // import { useColorScheme } from '@/components/useColorScheme';
 const CLERK_PUBL_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -15,7 +16,6 @@ const token_cash = {
   async getToken(key: string) {
     try {
       return SecureStore.getItemAsync(key);
-      
     } catch (error) {
       return null;
     }
@@ -25,9 +25,9 @@ const token_cash = {
     try {
       return SecureStore.setItemAsync(key, value);
     } catch (error) {
-      return ;
+      return;
     }
-  }
+  },
 };
 
 export {
@@ -64,9 +64,9 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-  
+
   return (
-    <ClerkProvider publishableKey={CLERK_PUBL_KEY!} tokenCache={token_cash} > 
+    <ClerkProvider publishableKey={CLERK_PUBL_KEY!} tokenCache={token_cash}>
       <RootLayoutNav />
     </ClerkProvider>
   );
@@ -106,9 +106,7 @@ function RootLayoutNav() {
         options={{
           headerTitle: '',
           headerTransparent: true,
-          
         }}
-        
       />
       <Stack.Screen
         name="(modals)/booking"

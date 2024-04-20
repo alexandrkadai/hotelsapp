@@ -36,6 +36,21 @@
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8b4a6374-9506-4101-8267-0814ffe1ad33"
+      }
+    },
+    "owner": "takeree",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8b4a6374-9506-4101-8267-0814ffe1ad33"
     }
   }
 }
