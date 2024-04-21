@@ -1,10 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { View } from 'react-native';
-import { Link, Stack } from 'expo-router';
-// import ListingsMap from '@/components/ListingsMap';
+import { Stack } from 'expo-router';
 
 import ExploreHeader from '@/components/ExploreHeader';
-import Listings from '@/components/Listings';
 import listingsDataGeo from '@/assets/data/airbnb-listings.geo.json';
 import listingsData from '@/assets/data/airbnb-listings.json';
 import ListingsMap from '@/components/ListingsMap';
@@ -23,7 +21,7 @@ const Page = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={{ flex: 1,  marginTop: 80, }}>
+      <View style={{ flex: 1, marginTop: 80 }}>
         <Stack.Screen
           options={{
             header: () => <ExploreHeader onCategoryChanged={onDataChange} />,
@@ -36,8 +34,9 @@ const Page = () => {
         <ListingsBottomSheet listings={items} category={category} />
 
         {/* <Link href={'/(modals)/login'}>Login </Link>
-      <Link href={'/(modals)/booking'}>Booking </Link>
-      <Link href={'/listing/1223'}>Listing Details </Link> */}
+        <Link href={'/(modals)/booking'}>Booking </Link>
+        <Link href={'/listing/1223'}>Listing Details </Link> */}
+        
       </View>
     </GestureHandlerRootView>
   );

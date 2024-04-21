@@ -2,7 +2,6 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
   ListRenderItem,
   TouchableOpacity,
   Image,
@@ -13,7 +12,6 @@ import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
 import { Listings_TYPES } from '@/intreface/listing_types';
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetFlatList, BottomSheetFlatListMethods } from '@gorhom/bottom-sheet';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 
 interface Props {
   listings: any[];
