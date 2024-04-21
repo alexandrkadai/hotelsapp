@@ -6,7 +6,6 @@ import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 
 import { Listings_TYPES } from '@/intreface/listing_types';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 interface Props {
   listings: Listings_TYPES[];
