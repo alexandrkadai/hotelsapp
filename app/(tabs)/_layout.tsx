@@ -1,8 +1,7 @@
-import { View, Text } from 'react-native';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import Colors from '@/constants/Colors';
-import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
@@ -50,6 +49,7 @@ const Layout = () => {
         name="profile"
         options={{
           tabBarLabel: 'Profile',
+          headerShown: false,
           tabBarIcon: ({ color, size }) => <FontAwesome5 name="user-circle" color={color} size={size} />,
         }}
       />

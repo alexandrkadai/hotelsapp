@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import ModalHeaderText from '@/components/ModalHeaderText';
+import Colors from '@/constants/Colors';
 
 // import { useColorScheme } from '@/components/useColorScheme';
 const CLERK_PUBL_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -111,17 +113,16 @@ function RootLayoutNav() {
       <Stack.Screen
         name="(modals)/booking"
         options={{
-          title: 'Bookings',
-          headerTitleStyle: {
-            fontFamily: 'mon-sb',
-          },
+          presentation: 'transparentModal',
+          animation: 'fade',
+          headerTransparent: true,
+          headerTitle: () => <ModalHeaderText />,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
+            <TouchableOpacity style={{backgroundColor:'white',borderColor: Colors.grey,borderRadius:20,borderWidth:1}} onPress={() => router.back()}>
               <Ionicons name="close-outline" size={28} />
             </TouchableOpacity>
           ),
-          presentation: 'transparentModal',
-          animation: 'fade',
+         
         }}
       />
     </Stack>
