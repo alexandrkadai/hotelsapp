@@ -68,9 +68,11 @@ export default function RootLayout() {
   }
 
   return (
+    <GestureHandlerRootView  style={{ flex: 1 }}> 
     <ClerkProvider publishableKey={CLERK_PUBL_KEY!} tokenCache={token_cash}>
       <RootLayoutNav />
     </ClerkProvider>
+    </GestureHandlerRootView>
   );
 }
 
@@ -118,11 +120,17 @@ function RootLayoutNav() {
           headerTransparent: true,
           headerTitle: () => <ModalHeaderText />,
           headerLeft: () => (
-            <TouchableOpacity style={{backgroundColor:'white',borderColor: Colors.grey,borderRadius:20,borderWidth:1}} onPress={() => router.back()}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'white',
+                borderColor: Colors.grey,
+                borderRadius: 20,
+                borderWidth: 1,
+              }}
+              onPress={() => router.back()}>
               <Ionicons name="close-outline" size={28} />
             </TouchableOpacity>
           ),
-         
         }}
       />
     </Stack>

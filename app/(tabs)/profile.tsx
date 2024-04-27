@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  TextInput
+  TextInput,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useAuth, useUser } from '@clerk/clerk-expo';
@@ -16,7 +16,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { defaultStyles } from '@/constants/Styles';
 import Colors from '@/constants/Colors';
 import * as ImagePicker from 'expo-image-picker';
-
 
 const Page = () => {
   const { signOut, isSignedIn } = useAuth();
@@ -91,9 +90,11 @@ const Page = () => {
                   onChangeText={setLastName}
                   style={[defaultStyles.inputField, { width: 100 }]}
                 />
-                <TouchableOpacity onPress={ () => {onSaveUser();
-                  setEdit(false);
-                }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    onSaveUser();
+                    setEdit(false);
+                  }}>
                   <Ionicons name="checkmark-outline" size={20} />
                 </TouchableOpacity>
               </View>
@@ -112,7 +113,7 @@ const Page = () => {
           <Text>Since {user?.createdAt?.toLocaleDateString()}</Text>
         </View>
       )}
-      {isSignedIn && <Button title="Log out" onPress={() => signOut()} color={'dark'} />}
+      {isSignedIn && <Button title="Log out" onPress={() => signOut()} color={'black'} />}
 
       {!isSignedIn && (
         <Link href={'/(modals)/login'} asChild>
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.grey,
   },
   editRow: {
-    height:57,
+    height: 57,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
