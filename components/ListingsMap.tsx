@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps';
 import { RootGEO } from '@/intreface/listigns_geo_TYPES';
 import { defaultStyles } from '@/constants/Styles';
 import { useRouter } from 'expo-router';
@@ -53,7 +53,7 @@ const ListingsMap = memo(({ listingsData }: Props) => {
       <MapView
         animationEnabled={false}
         style={StyleSheet.absoluteFill}
-        provider={PROVIDER_GOOGLE}
+        provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
         showsUserLocation
         showsMyLocationButton
         initialRegion={INITIAL_REGION}
