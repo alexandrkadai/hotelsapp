@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import RootLayoutNav from '@/components/RootLayoutNaav';
 import { useFonts } from 'expo-font';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
@@ -66,9 +64,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ClerkProvider publishableKey={CLERK_PUBL_KEY!} tokenCache={token_cash}>
-        <NavigationContainer>
           <RootLayoutNav />
-        </NavigationContainer>
       </ClerkProvider>
     </GestureHandlerRootView>
   );
