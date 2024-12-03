@@ -1,17 +1,13 @@
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { Button, TouchableOpacity } from 'react-native';
-import { Stack, useNavigation, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-
-import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import RootLayoutNav from '@/components/RootLayoutNaav';
 import { useFonts } from 'expo-font';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import ModalHeaderText from '@/components/ModalHeaderText';
-import Colors from '@/constants/Colors';
 
-// import { useColorScheme } from '@/components/useColorScheme';
 const CLERK_PUBL_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 const token_cash = {
@@ -68,71 +64,13 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView  style={{ flex: 1 }}> 
-    <ClerkProvider publishableKey={CLERK_PUBL_KEY!} tokenCache={token_cash}>
-      <RootLayoutNav />
-    </ClerkProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ClerkProvider publishableKey={CLERK_PUBL_KEY!} tokenCache={token_cash}>
+        <NavigationContainer>
+          <RootLayoutNav />
+        </NavigationContainer>
+      </ClerkProvider>
     </GestureHandlerRootView>
   );
 }
 
-function RootLayoutNav() {
-  const router = useRouter();
-
-  const { isLoaded, isSignedIn } = useAuth();
-
-  useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push('./(modals)/login');
-    }
-  }, [isLoaded]);
-
-  return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="(modals)/login"
-        options={{
-          title: 'Log In or Sign Up',
-          headerTitleStyle: {
-            fontFamily: 'mon-sb',
-          },
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
-            </TouchableOpacity>
-          ),
-          presentation: 'modal',
-        }}
-      />
-      <Stack.Screen
-        name="listing/[id]"
-        options={{
-          headerTitle: '',
-          headerTransparent: true,
-        }}
-      />
-      <Stack.Screen
-        name="(modals)/booking"
-        options={{
-          presentation: 'transparentModal',
-          animation: 'fade',
-          headerTransparent: true,
-          headerTitle: () => <ModalHeaderText />,
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{
-                backgroundColor: 'white',
-                borderColor: Colors.grey,
-                borderRadius: 20,
-                borderWidth: 1,
-              }}
-              onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-    </Stack>
-  );
-}
